@@ -713,6 +713,16 @@
           <input type="tel" id="q-tel" placeholder="6XX XXX XXX" autocomplete="tel">
         </div>
       </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="q-matricula">Matrícula</label>
+          <input type="text" id="q-matricula" placeholder="Ej: 1234 ABC" style="text-transform:uppercase;">
+        </div>
+        <div class="form-group">
+          <label for="q-modelo">Marca y modelo</label>
+          <input type="text" id="q-modelo" placeholder="Ej: Seat León 2019">
+        </div>
+      </div>
       <div class="form-group full">
         <label for="q-servicio">¿Qué necesitas?</label>
         <select id="q-servicio">
@@ -998,6 +1008,8 @@
     function enviarPresupuesto() {
       const nombre   = document.getElementById('q-nombre').value.trim();
       const tel      = document.getElementById('q-tel').value.trim();
+      const matricula = document.getElementById('q-matricula').value.trim().toUpperCase();
+      const modelo   = document.getElementById('q-modelo').value.trim();
       const servicio = document.getElementById('q-servicio').value;
       if (!nombre || !tel) {
         alert('Por favor, rellena al menos tu nombre y teléfono.');
@@ -1007,8 +1019,10 @@
         'Hola Auto-Betxí! 👋 Me llamo ' + nombre +
         ' y os contacto desde vuestra web.\n' +
         '📱 Mi teléfono: ' + tel + '\n' +
+        (matricula ? '🔑 Matrícula: ' + matricula + '\n' : '') +
+        (modelo ? '🚗 Vehículo: ' + modelo + '\n' : '') +
         '🔧 Servicio que necesito: ' + (servicio || 'Pendiente de indicar') + '\n\n' +
-        '¿Podéis hacerme un presupuesto gratuito?'
+        '¿Podéis hacerme un presupuesto?'
       );
       window.open('https://wa.me/34619960232?text=' + msg, '_blank');
     }
