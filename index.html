@@ -8,6 +8,15 @@
   <meta name="keywords" content="taller mecánico Betxí, chapa y pintura Betxí, mecánica Castellón, ITV Betxí, taller multimarca Betxí, Auto-Betxí"/>
   <link rel="canonical" href="https://www.autobetxi.es/"/>
 
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-027V9SBK2S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-027V9SBK2S');
+  </script>
+
   <meta property="og:type"        content="website"/>
   <meta property="og:url"         content="https://www.autobetxi.es/"/>
   <meta property="og:site_name"   content="Auto-Betxí S.L."/>
@@ -183,12 +192,15 @@
       .header-nav a { border-right: none; border-left: none !important; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 14px 5%; font-size: 0.9rem; }
     }
 
-    .logo-reputation-wrapper { display: flex; align-items: center; gap: 30px; cursor: pointer; }
+    .logo-reputation-wrapper { display: flex; align-items: center; gap: 14px; cursor: pointer; }
     .logo-reputation-wrapper img { height: 90px; width: auto; transition: 0.3s; }
     
     .brand-reputation-text { display: flex; align-items: center; gap: 20px; border-left: 3px solid var(--azul-corp); padding-left: 20px; }
     .brand-name { font-family: 'Barlow Condensed'; font-weight: 800; color: var(--azul-corp); font-size: 1.8rem; line-height: 1; }
     .brand-sub { font-size: 0.8rem; font-weight: 700; color: var(--azul-claro); text-transform: uppercase; letter-spacing: 1.5px; }
+
+    /* nombre compacto solo en móvil */
+    .brand-name-mobile { display: none; }
 
     .header-socials { display: flex; align-items: center; gap: 6px; }
     .header-socials a {
@@ -200,6 +212,36 @@
     .header-socials .btn-ig { background: #fde8f0; color: var(--ig); }
     .header-socials .btn-fb:hover { background: var(--fb); color: white; transform: translateY(-3px); }
     .header-socials .btn-ig:hover { background: var(--ig); color: white; transform: translateY(-3px); }
+
+    /* ─── HEADER MÓVIL ─── */
+    @media (max-width: 768px) {
+      .header-top { padding: 8px 4%; }
+      /* logo más pequeño */
+      .logo-reputation-wrapper img { height: 52px; }
+      .logo-reputation-wrapper { gap: 10px; }
+      /* texto desktop oculto en móvil */
+      .brand-reputation-text { display: none; }
+      /* nombre compacto visible en móvil */
+      .brand-name-mobile {
+        display: flex; flex-direction: column; line-height: 1.1;
+      }
+      .brand-name-mobile .bm-main {
+        font-family: 'Barlow Condensed'; font-weight: 800;
+        color: var(--azul-corp); font-size: 1.25rem; text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .brand-name-mobile .bm-sub {
+        font-size: 0.65rem; font-weight: 700; color: var(--azul-claro);
+        text-transform: uppercase; letter-spacing: 1px;
+      }
+      /* iconos sociales más pequeños */
+      .header-socials a { width: 36px; height: 36px; font-size: 1.2rem; border-radius: 10px; }
+    }
+    @media (max-width: 400px) {
+      /* en pantallas muy pequeñas ocultamos sociales del header (están en footer) */
+      .header-socials { display: none; }
+      .brand-name-mobile .bm-main { font-size: 1.1rem; }
+    }
 
     /* --- HERO --- */
     .hero {
@@ -311,21 +353,38 @@
 
     /* --- WHATSAPP FLOTANTE --- */
     .wsp-float {
-      position: fixed; bottom: 28px; right: 28px; z-index: 1500;
-      background: var(--wsp); color: white; border-radius: 50px;
-      padding: 14px 22px; display: flex; align-items: center; gap: 10px;
-      text-decoration: none; font-weight: 800; font-size: 0.95rem;
-      box-shadow: 0 6px 20px rgba(37,211,102,0.45);
+      position: fixed; bottom: 24px; right: 20px; z-index: 1500;
+      background: var(--wsp); color: white; border-radius: 50%;
+      width: 50px; height: 50px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(37,211,102,0.5);
       transition: transform 0.3s, box-shadow 0.3s;
     }
-    .wsp-float:hover { transform: translateY(-4px) scale(1.04); box-shadow: 0 12px 30px rgba(37,211,102,0.5); }
-    .wsp-float i { font-size: 1.4rem; }
-    .wsp-float .wsp-text { display: inline; }
+    .wsp-float:hover { transform: translateY(-3px) scale(1.08); box-shadow: 0 8px 22px rgba(37,211,102,0.5); }
+    .wsp-float .wsp-text { display: none; }
+
+    /* --- BOTÓN LLAMADA FLOTANTE --- */
+    .call-float {
+      position: fixed; bottom: 82px; right: 20px; z-index: 1500;
+      background: var(--azul-corp); color: white; border-radius: 50%;
+      width: 50px; height: 50px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(0,45,114,0.45);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .call-float:hover { transform: translateY(-3px) scale(1.08); box-shadow: 0 8px 22px rgba(0,45,114,0.5); }
+    .call-float .call-text { display: none; }
 
     @media (max-width: 1024px) { 
       .hero h1 { font-size: 3rem; } 
-      .brand-reputation-text { display: none; } 
       .logo-reputation-wrapper img { height: 65px; }
+      /* en tablet mostramos texto pero más pequeño */
+      .brand-name { font-size: 1.4rem; }
+      .brand-sub { font-size: 0.72rem; }
     }
     @media (max-width: 768px) {
       .hero { height: 100svh; }
@@ -350,6 +409,71 @@
       .btn-group { flex-direction: column; align-items: center; }
       .btn { width: 100%; max-width: 280px; justify-content: center; }
     }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.65s cubic-bezier(.22,.68,0,1.2), transform 0.65s cubic-bezier(.22,.68,0,1.2);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* stagger delay para grids */
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.18s; }
+    .reveal-delay-3 { transition-delay: 0.28s; }
+    .reveal-delay-4 { transition-delay: 0.38s; }
+    .reveal-delay-5 { transition-delay: 0.48s; }
+    .reveal-delay-6 { transition-delay: 0.58s; }
+
+    /* ── STATS ANIMADOS ── */
+    .stats-section { padding: 70px 5%; background: linear-gradient(135deg, var(--azul-corp) 0%, #0056b3 100%); color: white; text-align: center; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 960px; margin: 0 auto; }
+    .stat-item { padding: 30px 10px; }
+    .stat-number { font-family: 'Barlow Condensed'; font-size: 4rem; font-weight: 800; color: var(--gold); line-height: 1; display: block; }
+    .stat-suffix { font-family: 'Barlow Condensed'; font-size: 2.5rem; font-weight: 800; color: var(--gold); }
+    .stat-label { font-size: 0.85rem; font-weight: 600; opacity: 0.85; text-transform: uppercase; letter-spacing: 1px; margin-top: 8px; }
+    @media (max-width: 640px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } .stat-number { font-size: 3rem; } }
+
+    /* ── FRANJA ASEGURADORAS ── */
+    .trust-section { padding: 40px 5%; background: var(--gris-bg); border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; text-align: center; }
+    .trust-title { font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: #94a3b8; margin-bottom: 24px; }
+    .trust-logos { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px 20px; }
+    .trust-logo { background: white; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 10px 20px; font-family: 'Barlow Condensed'; font-weight: 800; font-size: 1.05rem; color: #334155; letter-spacing: 0.5px; transition: box-shadow 0.2s, transform 0.2s; }
+    .trust-logo:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.1); transform: translateY(-2px); }
+
+    /* ── POR QUÉ ELEGIRNOS ── */
+    .why-section { padding: 90px 5%; background: white; text-align: center; }
+    .why-section h2 { font-family: 'Barlow Condensed'; font-size: 3rem; color: var(--azul-corp); text-transform: uppercase; margin-bottom: 16px; }
+    .why-subtitle { color: #64748b; font-size: 1.05rem; max-width: 540px; margin: 0 auto 56px; }
+    .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto; }
+    .why-card { padding: 36px 24px; border-radius: 18px; border: 2px solid #e2e8f0; transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s; }
+    .why-card:hover { border-color: var(--azul-claro); box-shadow: 0 12px 32px rgba(0,86,179,0.1); transform: translateY(-6px); }
+    .why-icon { width: 64px; height: 64px; border-radius: 16px; background: #eff6ff; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 1.8rem; }
+    .why-card h3 { font-size: 1rem; font-weight: 800; color: var(--azul-corp); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .why-card p { font-size: 0.9rem; color: #64748b; line-height: 1.6; }
+    @media (max-width: 860px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .why-grid { grid-template-columns: 1fr; } }
+
+    /* ── FORMULARIO PRESUPUESTO ── */
+    .quote-section { padding: 90px 5%; background: linear-gradient(135deg, #f0f5ff 0%, #e8f4fd 100%); text-align: center; }
+    .quote-section h2 { font-family: 'Barlow Condensed'; font-size: 3rem; color: var(--azul-corp); text-transform: uppercase; margin-bottom: 12px; }
+    .quote-section > p { color: #64748b; margin-bottom: 40px; font-size: 1.05rem; }
+    .quote-form { max-width: 620px; margin: 0 auto; background: white; border-radius: 24px; padding: 40px; box-shadow: 0 8px 40px rgba(0,45,114,0.1); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; text-align: left; }
+    .form-group label { font-size: 0.8rem; font-weight: 700; color: var(--azul-corp); text-transform: uppercase; letter-spacing: 0.8px; }
+    .form-group input, .form-group select { padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 0.95rem; font-family: 'Inter', sans-serif; color: var(--texto); transition: border-color 0.2s, box-shadow 0.2s; outline: none; background: #fafafa; }
+    .form-group input:focus, .form-group select:focus { border-color: var(--azul-claro); box-shadow: 0 0 0 3px rgba(0,86,179,0.12); background: white; }
+    .form-group.full { grid-column: 1 / -1; margin-bottom: 16px; }
+    .btn-quote { width: 100%; padding: 18px; border-radius: 14px; border: none; background: var(--wsp); color: white; font-size: 1rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: transform 0.2s, box-shadow 0.2s; margin-top: 8px; text-transform: uppercase; letter-spacing: 1px; }
+    .btn-quote:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(37,211,102,0.4); }
+    .form-note { font-size: 0.78rem; color: #94a3b8; margin-top: 14px; }
+    @media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } .quote-form { padding: 28px 20px; } }
+
+    /* ── SCROLL REVEAL ── */
   </style>
 </head>
 <body>
@@ -375,6 +499,12 @@
     <div class="header-top">
       <div class="logo-reputation-wrapper" onclick="verLogo()">
         <img src="image_7cb108.jpg" alt="Logo Auto-Betxí S.L." loading="eager" decoding="async" width="90" height="90">
+        <!-- Nombre compacto visible solo en móvil -->
+        <div class="brand-name-mobile">
+          <span class="bm-main">Auto-Betxí</span>
+          <span class="bm-sub">Mecánica · Chapa · Pintura</span>
+        </div>
+        <!-- Nombre completo visible en desktop -->
         <div class="brand-reputation-text">
           <div>
             <span class="brand-name">AUTO-BETXI</span><br>
@@ -397,6 +527,7 @@
       <a href="#servicios" onclick="closeNav()"><svg class="ico" aria-hidden="true"><use href="#ico-wrench"/></svg> Servicios</a>
       <a href="#opiniones" onclick="closeNav()"><svg class="ico" aria-hidden="true"><use href="#ico-star"/></svg> Opiniones</a>
       <a href="#faq" onclick="closeNav()"><svg class="ico" aria-hidden="true"><use href="#ico-question"/></svg> FAQ</a>
+      <a href="#presupuesto" onclick="closeNav()" style="background:rgba(255,180,0,0.18); color:#ffcc00;"><svg class="ico" aria-hidden="true"><use href="#ico-plus"/></svg> Presupuesto</a>
       <a href="#ubicacion" onclick="closeNav()"><svg class="ico" aria-hidden="true"><use href="#ico-marker"/></svg> Cómo llegar</a>
       <a href="tel:+34964622505" onclick="closeNav()"><svg class="ico" aria-hidden="true"><use href="#ico-phone"/></svg> 964 62 25 05</a>
       <a href="https://wa.me/34619960232" target="_blank" style="background:rgba(37,211,102,0.15); color:#25d366;" onclick="closeNav()"><svg class="ico" aria-hidden="true"><use href="#ico-whatsapp"/></svg> WhatsApp</a>
@@ -422,9 +553,48 @@
       <strong>08:00 – 16:00</strong>
       <span id="estado-taller" class="horario-badge">ABIERTO</span>
     </div>
-    <div class="horario-item" style="opacity:0.5; background:rgba(255,255,255,0.06); padding:6px 16px; border-radius:20px; border:1px solid rgba(255,255,255,0.12);">
-      <svg class="ico" aria-hidden="true" style="font-size:0.95rem;"><use href="#ico-moon"/></svg>
-      <span style="font-size:0.85rem; letter-spacing:0.5px;">Sáb & Dom — Cerrado</span>
+    <div class="horario-item" style="background:rgba(255,255,255,0.06); padding:8px 18px; border-radius:20px; border:1px solid rgba(255,80,80,0.4);">
+      <svg class="ico" aria-hidden="true" style="font-size:1rem; color:#ff6b6b;"><use href="#ico-moon"/></svg>
+      <span style="font-size:0.88rem; letter-spacing:0.5px; color:rgba(255,255,255,0.75);">Sáb & Dom</span>
+      <span style="background:#ff4444; color:white; font-size:0.72rem; font-weight:800; padding:2px 10px; border-radius:20px; text-transform:uppercase; letter-spacing:1px;">Cerrado</span>
+    </div>
+  </div>
+
+  <!-- STATS ANIMADOS -->
+  <section class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-item reveal reveal-delay-1">
+        <span class="stat-number" data-target="20" data-suffix="+">0</span>
+        <div class="stat-label">Años de experiencia</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <span class="stat-number" data-target="3000" data-suffix="+">0</span>
+        <div class="stat-label">Coches reparados</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-3">
+        <span class="stat-number" data-target="46" data-suffix="★" data-decimal="true">0</span>
+        <div class="stat-label">Valoración Google</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-4">
+        <span class="stat-number" data-target="100" data-suffix="%">0</span>
+        <div class="stat-label">Aseguradoras aceptadas</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FRANJA ASEGURADORAS -->
+  <div class="trust-section">
+    <div class="trust-title">Trabajamos con todas las aseguradoras</div>
+    <div class="trust-logos">
+      <div class="trust-logo">MAPFRE</div>
+      <div class="trust-logo">ALLIANZ</div>
+      <div class="trust-logo">AXA</div>
+      <div class="trust-logo">GENERALI</div>
+      <div class="trust-logo">REALE</div>
+      <div class="trust-logo">MUTUA MADRILEÑA</div>
+      <div class="trust-logo">ZURICH</div>
+      <div class="trust-logo">LÍNEA DIRECTA</div>
+      <div class="trust-logo">VERTI</div>
     </div>
   </div>
 
@@ -432,7 +602,7 @@
     <h2 style="font-family: 'Barlow Condensed'; font-size: 3.2rem; color: var(--azul-corp); text-transform: uppercase;">NUESTROS SERVICIOS ESPECIALIZADOS</h2>
     <div class="services-grid">
 
-      <div class="service-card">
+      <div class="service-card reveal reveal-delay-1">
         <svg class="card-svg" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <rect x="10" y="28" width="44" height="30" rx="5" fill="#dbeafe" stroke="#0056b3" stroke-width="2"/>
           <rect x="22" y="14" width="10" height="18" rx="3" fill="#0056b3"/>
@@ -455,7 +625,7 @@
         <p>Revisiones oficiales manteniendo la garantía de fábrica, diagnosis electrónica avanzada de fallos, y puesta a punto integral multimarca.</p>
       </div>
 
-      <div class="service-card">
+      <div class="service-card reveal reveal-delay-2">
         <svg class="card-svg" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <rect x="6" y="44" width="54" height="18" rx="5" fill="#dbeafe" stroke="#0056b3" stroke-width="2"/>
           <path d="M16 44 Q20 28 34 26 Q46 26 50 44Z" fill="#93c5fd" stroke="#0056b3" stroke-width="2"/>
@@ -475,7 +645,7 @@
         <p>Expertos en colorimetría exacta y acabados de espejo en cabina de secado térmica. Restauración estética total con todas las aseguradoras.</p>
       </div>
 
-      <div class="service-card">
+      <div class="service-card reveal reveal-delay-3">
         <svg class="card-svg" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <rect x="38" y="8" width="34" height="42" rx="4" fill="#dbeafe" stroke="#0056b3" stroke-width="2"/>
           <rect x="43" y="6" width="12" height="6" rx="2" fill="#0056b3"/>
@@ -500,22 +670,84 @@
     </div>
   </section>
 
+  <!-- POR QUÉ ELEGIRNOS -->
+  <section class="why-section">
+    <h2>¿Por qué elegirnos?</h2>
+    <p class="why-subtitle">Más de 20 años haciendo las cosas bien. Estos son los pilares que nos diferencian.</p>
+    <div class="why-grid">
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-icon">🛡️</div>
+        <h3>Garantía de fábrica</h3>
+        <p>Piezas homologadas y protocolos oficiales. Tu garantía queda intacta aunque no vayas al concesionario.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-icon">💰</div>
+        <h3>Precio honesto</h3>
+        <p>Presupuesto gratis, sin sorpresas. Te explicamos cada trabajo antes de hacerlo. Sin letra pequeña.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <div class="why-icon">🔧</div>
+        <h3>Multimarca total</h3>
+        <p>Diagnóstico electrónico avanzado para cualquier coche. Un taller para todos.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-4">
+        <div class="why-icon">🚗</div>
+        <h3>Recogida para ITV</h3>
+        <p>Gestionamos la cita, recogemos tu coche y lo entregamos aprobado. Sin que pierdas ni un minuto.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULARIO PRESUPUESTO RÁPIDO -->
+  <section class="quote-section" id="presupuesto">
+    <h2>Pide tu presupuesto gratis</h2>
+    <p>Rellena el formulario y te contactamos por WhatsApp en minutos. Sin compromiso.</p>
+    <div class="quote-form reveal">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="q-nombre">Tu nombre</label>
+          <input type="text" id="q-nombre" placeholder="Ej: Juan García" autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label for="q-tel">Teléfono</label>
+          <input type="tel" id="q-tel" placeholder="6XX XXX XXX" autocomplete="tel">
+        </div>
+      </div>
+      <div class="form-group full">
+        <label for="q-servicio">¿Qué necesitas?</label>
+        <select id="q-servicio">
+          <option value="">— Selecciona el servicio —</option>
+          <option>Mecánica / Revisión</option>
+          <option>Chapa y Pintura</option>
+          <option>Pre-ITV / ITV</option>
+          <option>Diagnóstico electrónico</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <button class="btn-quote" onclick="enviarPresupuesto()">
+        <svg class="ico" aria-hidden="true" style="font-size:1.3em"><use href="#ico-whatsapp"/></svg>
+        ENVIAR POR WHATSAPP
+      </button>
+      <p class="form-note">📲 Te responderemos en menos de 2 horas en horario de taller.</p>
+    </div>
+  </section>
+
   <section class="reviews" id="opiniones">
     <h2 style="font-family: 'Barlow Condensed'; font-size: 3rem; color: white;">LO QUE DICEN NUESTROS CLIENTES</h2>
     <div style="font-size: 1.5rem; color: var(--gold); margin-top: 10px; font-weight: 800;">4.6 ★★★★★ Google Business</div>
     
     <div class="rev-grid">
-      <div class="rev-card">
+      <div class="rev-card reveal reveal-delay-1">
         <div class="review-stars">★★★★★</div>
         <p>"Un taller excelente. Profesionales y muy atentos. El trabajo de pintura en mi coche ha quedado impecable."</p>
         <div style="display:flex; align-items:center; gap:10px; margin-top:20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top:15px;"><strong>Jose Ramon</strong></div>
       </div>
-      <div class="rev-card">
+      <div class="rev-card reveal reveal-delay-2">
         <div class="review-stars">★★★★★</div>
         <p>"Confianza total. Te explican todo con claridad. Rapidez y buen precio en Betxí."</p>
         <div style="display:flex; align-items:center; gap:10px; margin-top:20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top:15px;"><strong>Maria Carmen</strong></div>
       </div>
-      <div class="rev-card">
+      <div class="rev-card reveal reveal-delay-3">
         <div class="review-stars">★★★★★</div>
         <p>"Grandes profesionales de la chapa y pintura. Gestión rápida con el seguro y coche entregado a tiempo."</p>
         <div style="display:flex; align-items:center; gap:10px; margin-top:20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top:15px;"><strong>Paco V.</strong></div>
@@ -531,42 +763,42 @@
   <section class="faq-section" id="faq">
     <h2>PREGUNTAS FRECUENTES</h2>
     <div class="faq-grid">
-      <div class="faq-item">
+      <div class="faq-item reveal reveal-delay-1">
         <button class="faq-question" onclick="toggleFaq(this)">
           ¿Mantenéis la garantía de fábrica?
           <svg class="ico faq-icon" aria-hidden="true"><use href="#ico-plus"/></svg>
         </button>
         <div class="faq-answer"><p>Sí. Usamos piezas homologadas y seguimos los protocolos oficiales del fabricante, por lo que la garantía de fábrica se mantiene íntegra.</p></div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item reveal reveal-delay-2">
         <button class="faq-question" onclick="toggleFaq(this)">
           ¿Trabajáis con todas las aseguradoras?
           <svg class="ico faq-icon" aria-hidden="true"><use href="#ico-plus"/></svg>
         </button>
         <div class="faq-answer"><p>Sí, trabajamos con todas las compañías aseguradoras. Nos encargamos de toda la gestión del parte para que no tengas que preocuparte de nada.</p></div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item reveal reveal-delay-3">
         <button class="faq-question" onclick="toggleFaq(this)">
           ¿Hacéis presupuesto gratuito?
           <svg class="ico faq-icon" aria-hidden="true"><use href="#ico-plus"/></svg>
         </button>
         <div class="faq-answer"><p>Sí, el presupuesto es completamente gratuito y sin compromiso. Llámanos al <a href="tel:+34964622505" style="color:var(--azul-claro);font-weight:700;">964 62 25 05</a> o escríbenos por WhatsApp al <a href="https://wa.me/34619960232" style="color:var(--azul-claro);font-weight:700;">619 96 02 32</a>.</p></div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item reveal reveal-delay-4">
         <button class="faq-question" onclick="toggleFaq(this)">
           ¿Recogéis el coche para la ITV?
           <svg class="ico faq-icon" aria-hidden="true"><use href="#ico-plus"/></svg>
         </button>
         <div class="faq-answer"><p>Sí. Gestionamos la recogida y entrega de tu vehículo directamente en la estación de ITV para que no pierdas tiempo ni trabajo.</p></div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item reveal reveal-delay-5">
         <button class="faq-question" onclick="toggleFaq(this)">
           ¿Reparáis cualquier marca de coche?
           <svg class="ico faq-icon" aria-hidden="true"><use href="#ico-plus"/></svg>
         </button>
         <div class="faq-answer"><p>Sí, somos un taller multimarca. Disponemos de tecnología de diagnosis avanzada compatible con todas las marcas del mercado.</p></div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item reveal reveal-delay-6">
         <button class="faq-question" onclick="toggleFaq(this)">
           ¿Cuál es el horario de atención?
           <svg class="ico faq-icon" aria-hidden="true"><use href="#ico-plus"/></svg>
@@ -622,6 +854,11 @@
       <p class="owner-title">Gerencia · Auto-Betxí S.L.</p>
     </div>
   </footer>
+
+  <a href="tel:+34964622505" class="call-float" aria-label="Llamar al taller">
+    <svg class="ico" aria-hidden="true"><use href="#ico-phone"/></svg>
+    <span class="call-text">Llamar</span>
+  </a>
 
   <a href="https://wa.me/34619960232" target="_blank" class="wsp-float" aria-label="Contactar por WhatsApp">
     <svg class="ico" aria-hidden="true"><use href="#ico-whatsapp"/></svg>
@@ -710,6 +947,71 @@
       }, { rootMargin: '200px' });
       obs.observe(section);
     })();
+
+    /* ── SCROLL REVEAL ── */
+    (function() {
+      if (!('IntersectionObserver' in window)) {
+        document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+        return;
+      }
+      const obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    })();
+
+    /* ── STATS COUNTER ── */
+    (function() {
+      const nums = document.querySelectorAll('.stat-number[data-target]');
+      if (!nums.length || !('IntersectionObserver' in window)) return;
+      const obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          const target = parseInt(el.dataset.target, 10);
+          const suffix = el.dataset.suffix || '';
+          const isDecimal = el.dataset.decimal === 'true';
+          const duration = 1800;
+          const step = 16;
+          const steps = duration / step;
+          let current = 0;
+          const increment = target / steps;
+          const timer = setInterval(function() {
+            current += increment;
+            if (current >= target) { current = target; clearInterval(timer); }
+            el.textContent = isDecimal
+              ? (current / 10).toFixed(1) + suffix
+              : Math.floor(current) + suffix;
+          }, step);
+          obs.unobserve(el);
+        });
+      }, { threshold: 0.4 });
+      nums.forEach(el => obs.observe(el));
+    })();
+
+    /* ── FORMULARIO PRESUPUESTO → WHATSAPP ── */
+    function enviarPresupuesto() {
+      const nombre   = document.getElementById('q-nombre').value.trim();
+      const tel      = document.getElementById('q-tel').value.trim();
+      const servicio = document.getElementById('q-servicio').value;
+      if (!nombre || !tel) {
+        alert('Por favor, rellena al menos tu nombre y teléfono.');
+        return;
+      }
+      const msg = encodeURIComponent(
+        'Hola Auto-Betxí! 👋 Me llamo ' + nombre +
+        ' y os contacto desde vuestra web.\n' +
+        '📱 Mi teléfono: ' + tel + '\n' +
+        '🔧 Servicio que necesito: ' + (servicio || 'Pendiente de indicar') + '\n\n' +
+        '¿Podéis hacerme un presupuesto gratuito?'
+      );
+      window.open('https://wa.me/34619960232?text=' + msg, '_blank');
+    }
   </script>
 
 </body>
