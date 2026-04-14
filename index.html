@@ -1038,6 +1038,52 @@
       .form-grid { grid-template-columns: 1fr; }
       .form-group.full { grid-column: span 1; }
     }
+    /* ══════════════════════════════════════════
+       GALERÍA
+       ══════════════════════════════════════════ */
+    .gallery-section { padding: 100px 5%; background: white; }
+    .gallery-tabs { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 36px; }
+    .gtab {
+      padding: 9px 22px; border-radius: 100px; border: 1.5px solid var(--gray-200);
+      background: white; font-family: var(--font-body); font-size: .85rem; font-weight: 600;
+      color: var(--gray-600); cursor: pointer; transition: all .2s;
+    }
+    .gtab:hover { border-color: var(--blue); color: var(--blue); }
+    .gtab.active { background: var(--blue); color: white; border-color: var(--blue); }
+
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    }
+    .gallery-item {
+      position: relative; border-radius: var(--radius-lg); overflow: hidden;
+      aspect-ratio: 4/3; cursor: pointer;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .gallery-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .5s ease;
+      display: block;
+    }
+    .gallery-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-xl); }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,22,40,.75) 0%, transparent 55%);
+      display: flex; align-items: flex-end; padding: 16px;
+      opacity: 0; transition: opacity .3s;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-overlay span {
+      color: white; font-size: .85rem; font-weight: 600;
+      font-family: var(--font-display);
+    }
+    .gallery-item.hidden { display: none; }
+    @media (max-width: 768px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -1083,6 +1129,7 @@
     <nav class="nav-links" aria-label="Navegación principal">
       <a href="#inicio"><svg class="ico" aria-hidden="true" style="width:.9em;height:.9em"><use href="#ico-home"/></svg> Inicio</a>
       <a href="#servicios">Servicios</a>
+      <a href="#galeria">Galería</a>
       <a href="#opiniones">Opiniones</a>
       <a href="#faq">FAQ</a>
       <a href="#ubicacion">Ubicación</a>
@@ -1160,9 +1207,15 @@
   <div class="hero-overlay"></div>
 
   <div class="hero-content">
-    <div class="hero-badge">
-      <span class="hero-badge-dot"></span>
-      Taller  en Betxí desde hace más de 20 años
+    <div style="display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; margin-bottom:20px; animation: fadeBadge .8s ease both;">
+      <div class="hero-badge" style="margin-bottom:0;">
+        <span class="hero-badge-dot"></span>
+        Taller en Betxí · más de 20 años
+      </div>
+      <div id="hero-estado" style="display:inline-flex; align-items:center; gap:8px; background:rgba(74,222,128,.15); border:1px solid rgba(74,222,128,.35); color:#4ade80; font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; padding:6px 16px; border-radius:100px;">
+        <span id="hero-estado-dot" style="width:8px;height:8px;border-radius:50%;background:#4ade80;animation:pulse 2s infinite;flex-shrink:0;"></span>
+        <span id="hero-estado-txt">ABIERTO AHORA</span>
+      </div>
     </div>
 
     <h1>
@@ -1262,20 +1315,91 @@
       <img src="foto_mecanica.jpg" alt="Taller mecánico multimarca en Betxí Castellón" class="service-card-img" loading="lazy">
       <h3>Mecánica de Precisión</h3>
       <p>Taller mecánico multimarca en Betxí con diagnosis electrónica avanzada. Revisiones oficiales que mantienen la garantía de fábrica, puesta a punto integral y reparación de cualquier avería.</p>
+      <a href="mecanica.html" class="service-badge" style="text-decoration:none; margin-top:20px;">
+        Ver todos los servicios de mecánica
+        <svg class="ico" style="width:.85em;height:.85em"><use href="#ico-arrow-r"/></svg>
+      </a>
     </div>
 
     <div class="service-card reveal reveal-delay-2">
       <img src="foto_chapa.jpg" alt="Chapa y pintura profesional en Betxí Castellón" class="service-card-img" loading="lazy">
       <h3>Chapa y Pintura Pro</h3>
       <p>Especialistas en chapa y pintura en Betxí (Castellón). Colorimetría exacta, acabados de fábrica en cabina de secado térmica y gestión completa del parte con todas las aseguradoras.</p>
+      <a href="chapa-pintura.html" class="service-badge" style="text-decoration:none; margin-top:20px;">
+        Ver todos los servicios de chapa y pintura
+        <svg class="ico" style="width:.85em;height:.85em"><use href="#ico-arrow-r"/></svg>
+      </a>
     </div>
 
     <div class="service-card reveal reveal-delay-3">
       <img src="foto_itv.jpg" alt="Pre-ITV e ITV en Betxí Castellón recogida incluida" class="service-card-img" loading="lazy">
       <h3>Pre-ITV e ITV en Betxí</h3>
-      <p>Revisión Pre-ITV completa para garantizar el aprobado en la estación de ITV de Castellón. Recogida y entrega del vehículo incluida, sin que pierdas tiempo.</p>
+      <p>Revisión Pre-ITV completa para garantizar el aprobado en la estación de ITV de Vila-real. Recogida y entrega del vehículo incluida, sin que pierdas tiempo.</p>
+      <a href="itv.html" class="service-badge" style="text-decoration:none; margin-top:20px;">
+        Ver todos los servicios de ITV
+        <svg class="ico" style="width:.85em;height:.85em"><use href="#ico-arrow-r"/></svg>
+      </a>
     </div>
 
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     GALERÍA DE TRABAJOS
+     ══════════════════════════════════════════ -->
+<section class="gallery-section" id="galeria">
+  <div class="container">
+    <div class="section-header" style="text-align:center; margin-bottom:48px;">
+      <span class="section-label">Nuestros trabajos</span>
+      <h2 class="section-title">Resultados reales del taller</h2>
+      <p class="section-sub" style="margin:0 auto; text-align:center;">Cada coche que entra en Auto-Betxí sale con el mismo cuidado que si fuera el nuestro.</p>
+    </div>
+
+    <div class="gallery-tabs">
+      <button class="gtab active" onclick="filterGallery('todos', this)">Todos</button>
+      <button class="gtab" onclick="filterGallery('chapa', this)">Chapa y Pintura</button>
+      <button class="gtab" onclick="filterGallery('mecanica', this)">Mecánica</button>
+      <button class="gtab" onclick="filterGallery('itv', this)">Pre-ITV / ITV</button>
+    </div>
+
+    <div class="gallery-grid" id="gallery-grid">
+      <div class="gallery-item reveal" data-cat="chapa">
+        <img src="foto-chapa.Pintura.jpg" alt="Reparación de chapa y pintura en Betxí" loading="lazy">
+        <div class="gallery-overlay"><span>Chapa y Pintura</span></div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-1" data-cat="chapa">
+        <img src="foto-cabina.jpg" alt="Cabina de pintura en Betxí Castellón" loading="lazy" style="object-position:right center;">
+        <div class="gallery-overlay"><span>Cabina de Pintura</span></div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-2" data-cat="mecanica">
+        <img src="foto_mecanica.jpg" alt="Mecánica de precisión multimarca Betxí" loading="lazy">
+        <div class="gallery-overlay"><span>Mecánica de Precisión</span></div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-3" data-cat="chapa">
+        <img src="foto_chapa.jpg" alt="Resultado final chapa y pintura Betxí" loading="lazy" style="object-position:left center;">
+        <div class="gallery-overlay"><span>Resultado Final</span></div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-4" data-cat="mecanica">
+        <img src="foto-diagnosis.jpg" alt="Diagnosis electrónica taller Betxí" loading="lazy" style="object-position:right center;">
+        <div class="gallery-overlay"><span>Diagnosis Electrónica</span></div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-5" data-cat="itv">
+        <img src="foto_itv.jpg" alt="Revisión Pre-ITV en Betxí Castellón" loading="lazy">
+        <div class="gallery-overlay"><span>Revisión Pre-ITV</span></div>
+      </div>
+       <div class="gallery-item reveal reveal-delay-5" data-cat="itv">
+        <img src="foto-preitv.jpg" alt="Revisión Pre-ITV en Betxí Castellón" loading="lazy">
+        <div class="gallery-overlay"><span>Revisión Pre-ITV</span></div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:40px;">
+      <a href="#presupuesto" class="btn btn-primary">
+        <svg class="ico" style="width:.95em;height:.95em"><use href="#ico-whatsapp"/></svg>
+        Pide presupuesto para tu coche
+      </a>
+    </div>
   </div>
 </section>
 
@@ -1474,7 +1598,7 @@
           <div class="why-reviews-score">
             <span class="stars">★★★★★</span>
             <span class="val">4.6</span>
-            <span class="lbl">Google Business · +30 reseñas verificadas</span>
+            <span class="lbl">Google Business · +40 reseñas verificadas</span>
           </div>
         </div>
         <div class="why-rev-grid">
@@ -1684,7 +1808,41 @@
     ticking = true;
   }, { passive: true });
 
-  /* ── ESTADO TALLER ── */
+  /* ── ESTADO HERO ── */
+  (function() {
+    const el = document.getElementById('hero-estado');
+    const dot = document.getElementById('hero-estado-dot');
+    const txt = document.getElementById('hero-estado-txt');
+    if (!el) return;
+    const ahora = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Madrid' }));
+    const dia = ahora.getDay();
+    const hora = ahora.getHours() + ahora.getMinutes() / 60;
+    const esSemana = dia >= 1 && dia <= 5;
+    const abierto = esSemana && hora >= 8 && hora < (dia === 5 ? 15.5 : 16);
+    if (!abierto) {
+      el.style.background = 'rgba(255,255,255,.08)';
+      el.style.borderColor = 'rgba(255,255,255,.2)';
+      el.style.color = 'rgba(255,255,255,.6)';
+      dot.style.background = 'rgba(255,255,255,.4)';
+      dot.style.animation = 'none';
+      txt.textContent = (dia === 0 || dia === 6) ? 'CERRADO — ABRIMOS EL LUNES' : 'CERRADO HOY';
+    }
+  })();
+
+  /* ── GALERÍA FILTRO ── */
+  function filterGallery(cat, btn) {
+    document.querySelectorAll('.gtab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      if (cat === 'todos' || item.dataset.cat === cat) {
+        item.classList.remove('hidden');
+      } else {
+        item.classList.add('hidden');
+      }
+    });
+  }
+
+
   (function() {
     const badge = document.getElementById('estado-taller');
     if (!badge) return;

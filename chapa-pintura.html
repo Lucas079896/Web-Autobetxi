@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chapa y Pintura en Betxí | Auto-Betxí S.L. — Especialistas en Castellón</title>
+  <meta name="description" content="Especialistas en chapa y pintura en Betxí (Castellón). Colorimetría exacta, cabina de secado térmica, acabados de fábrica y gestión con todas las aseguradoras. ☎ 964 62 25 05"/>
+  <link rel="canonical" href="https://www.autobetxi.es/chapa-pintura.html"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy:#1e3a6e; --navy-2:#1a3460; --navy-3:#1e4080;
+      --blue:#1a56db; --blue-light:#3b82f6; --gold:#f59e0b;
+      --white:#ffffff; --off-white:#f8f7f4;
+      --gray-100:#f3f4f6; --gray-200:#e5e7eb; --gray-400:#9ca3af; --gray-600:#4b5563;
+      --text:#1e3a6e; --text-muted:#64748b;
+      --radius-md:12px; --radius-lg:20px; --radius-xl:28px;
+      --shadow-md:0 4px 16px rgba(0,0,0,.08),0 2px 6px rgba(0,0,0,.04);
+      --shadow-xl:0 24px 64px rgba(0,0,0,.14),0 8px 24px rgba(0,0,0,.08);
+      --font-display:'Syne',sans-serif; --font-body:'DM Sans',sans-serif;
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--font-body);color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;}
+    img{max-width:100%;display:block;}
+    a{text-decoration:none;color:inherit;}
+    .container{max-width:1100px;margin:0 auto;padding:0 5%;}
+    .page-header{background:var(--navy);padding:20px 5%;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+    .back-link{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,.7);font-size:.88rem;font-weight:500;transition:color .2s;}
+    .back-link:hover{color:white;}
+    .back-link svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+    .header-cta-sm{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--navy);font-family:var(--font-body);font-size:.82rem;font-weight:700;padding:9px 18px;border-radius:100px;}
+    .service-hero{position:relative;min-height:420px;display:flex;align-items:center;background:linear-gradient(145deg,var(--navy) 0%,var(--navy-2) 100%);overflow:hidden;}
+    .service-hero-img{position:absolute;inset:0;background:url('foto_chapa.jpg') center/cover no-repeat;opacity:.35;}
+    .service-hero-content{position:relative;z-index:2;padding:60px 5%;color:white;max-width:720px;}
+    .service-hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(59,130,246,.2);border:1px solid rgba(59,130,246,.35);color:#93c5fd;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;padding:5px 14px;border-radius:100px;margin-bottom:20px;}
+    .service-hero h1{font-family:var(--font-display);font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.1;letter-spacing:-.03em;margin-bottom:16px;}
+    .service-hero p{font-size:1.05rem;opacity:.8;max-width:560px;line-height:1.7;margin-bottom:32px;}
+    .hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+    .btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-body);font-size:.9rem;font-weight:600;padding:14px 28px;border-radius:100px;border:none;cursor:pointer;transition:transform .25s;}
+    .btn:hover{transform:translateY(-2px);}
+    .btn-primary{background:var(--blue);color:white;}
+    .btn-gold{background:var(--gold);color:var(--navy);}
+    .btn-outline{background:transparent;color:white;border:1.5px solid rgba(255,255,255,.5);}
+    .btn-outline:hover{background:rgba(255,255,255,.1);border-color:white;}
+    .content-section{padding:80px 5%;}
+    .content-section.alt{background:var(--off-white);}
+    .services-list{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:48px;}
+    .service-item{background:white;border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:28px 24px;transition:border-color .2s,box-shadow .2s,transform .2s;}
+    .service-item:hover{border-color:var(--blue);box-shadow:var(--shadow-md);transform:translateY(-3px);}
+    .service-item-icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#eff6ff,#dbeafe);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:14px;}
+    .service-item h3{font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:8px;}
+    .service-item p{font-size:.88rem;color:var(--text-muted);line-height:1.6;}
+    .ventajas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;}
+    .ventaja-card{text-align:center;padding:32px 20px;}
+    .ventaja-num{font-family:var(--font-display);font-size:2.5rem;font-weight:800;color:var(--blue);display:block;line-height:1;}
+    .ventaja-label{font-size:.85rem;color:var(--text-muted);margin-top:6px;}
+    .photos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px;}
+    .photo-item{border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/3;}
+    .photo-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+    .photo-item:hover img{transform:scale(1.05);}
+    .process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:48px;position:relative;}
+    .process-steps::before{content:'';position:absolute;top:28px;left:12.5%;right:12.5%;height:2px;background:linear-gradient(90deg,var(--blue-light),var(--blue));z-index:0;}
+    .step{text-align:center;padding:0 12px;position:relative;z-index:1;}
+    .step-num{width:56px;height:56px;border-radius:50%;background:var(--blue);color:white;font-family:var(--font-display);font-size:1.2rem;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
+    .step h3{font-family:var(--font-display);font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:6px;}
+    .step p{font-size:.8rem;color:var(--text-muted);line-height:1.5;}
+    .faq-list{margin-top:40px;display:flex;flex-direction:column;gap:12px;}
+    .faq-q{background:white;border:1px solid var(--gray-200);border-radius:var(--radius-md);padding:18px 22px;font-family:var(--font-display);font-size:.95rem;font-weight:700;color:var(--navy);cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+    .faq-q:hover{border-color:var(--blue);}
+    .faq-a{display:none;padding:0 22px 18px;font-size:.9rem;color:var(--text-muted);line-height:1.7;border:1px solid var(--gray-200);border-top:none;border-radius:0 0 var(--radius-md) var(--radius-md);background:white;margin-top:-12px;}
+    .faq-a.open{display:block;}
+    .cta-section{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-3) 100%);padding:80px 5%;text-align:center;color:white;}
+    .cta-section h2{font-family:var(--font-display);font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin-bottom:16px;letter-spacing:-.03em;}
+    .cta-section p{font-size:1rem;opacity:.75;margin-bottom:36px;max-width:500px;margin-left:auto;margin-right:auto;}
+    .section-label{display:inline-block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--blue);margin-bottom:12px;}
+    .section-title{font-family:var(--font-display);font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;color:var(--navy);line-height:1.1;letter-spacing:-.03em;margin-bottom:16px;}
+    footer{background:var(--navy);color:white;padding:32px 5%;text-align:center;font-size:.85rem;opacity:.7;}
+    @media(max-width:768px){.services-list{grid-template-columns:1fr;}.ventajas-grid{grid-template-columns:repeat(2,1fr);}.photos-grid{grid-template-columns:repeat(2,1fr);}.process-steps{grid-template-columns:repeat(2,1fr);}.process-steps::before{display:none;}}
+    @media(max-width:480px){.ventajas-grid{grid-template-columns:1fr;}.photos-grid{grid-template-columns:1fr;}.hero-btns{flex-direction:column;}}
+  </style>
+</head>
+<body>
+
+<div class="page-header">
+  <a href="index.html" class="back-link">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    Volver a Auto-Betxí
+  </a>
+  <a href="index.html#presupuesto" class="header-cta-sm">Pedir presupuesto</a>
+</div>
+
+<section class="service-hero">
+  <div class="service-hero-img"></div>
+  <div class="service-hero-content">
+    <div class="service-hero-badge">Servicio especializado</div>
+    <h1>Chapa y Pintura Pro</h1>
+    <p>Especialistas en Betxí (Castellón) con cabina de secado térmica. Colorimetría exacta para acabados idénticos a los de fábrica y gestión directa con todas las aseguradoras.</p>
+    <div class="hero-btns">
+      <a href="index.html#presupuesto" class="btn btn-gold">Pedir presupuesto </a>
+      <a href="tel:+34964622505" class="btn btn-outline">☎ 964 62 25 05</a>
+    </div>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="container">
+    <span class="section-label">Qué hacemos</span>
+    <h2 class="section-title">Servicios de chapa y pintura</h2>
+    <p style="color:var(--text-muted);font-size:1rem;max-width:580px;">Reparamos golpes, arañazos y daños de todo tipo. El coche sale como si nunca hubiera pasado nada.</p>
+    <div class="services-list">
+      <div class="service-item">
+        <div class="service-item-icon">🔨</div>
+        <h3>Reparación de golpes y abolladuras</h3>
+        <p>Desde pequeños golpes hasta daños estructurales. Técnicas de conformado para recuperar la geometría original.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-item-icon">🎨</div>
+        <h3>Pintura con colorimetría exacta</h3>
+        <p>Sistema de mezcla de color computerizado que garantiza un resultado idéntico al de fábrica, sin diferencias de tono.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-item-icon">🏭</div>
+        <h3>Cabina de secado térmica</h3>
+        <p>Acabado profesional con cabina de última generación. Temperatura controlada para un secado perfecto y duradero.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-item-icon">📋</div>
+        <h3>Gestión de partes con seguros</h3>
+        <p>Nos encargamos de todo el papeleo con tu aseguradora. Trabajamos con todas las compañías del mercado.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-item-icon">✨</div>
+        <h3>Pulido y plastificado</h3>
+        <p>Recuperación del brillo original de la carrocería. Eliminación de arañazos superficiales y marcas de lavado.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-item-icon">🔩</div>
+        <h3>Sustitución de piezas</h3>
+        <p>Paragolpes, aletas, puertas y cualquier pieza de carrocería. Con piezas originales o de alta calidad equivalente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section alt">
+  <div class="container">
+    <span class="section-label">Cómo trabajamos</span>
+    <h2 class="section-title">Proceso de reparación</h2>
+    <p style="color:var(--text-muted);font-size:1rem;max-width:580px;">Transparencia total en cada paso del proceso.</p>
+    <div class="process-steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Peritación y presupuesto</h3>
+        <p>Valoramos el daño y te damos un presupuesto detallado sin compromiso.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Gestión con el seguro</h3>
+        <p>Si tienes parte, nos encargamos de toda la gestión con tu aseguradora.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Reparación y pintura</h3>
+        <p>Chapistería y pintura en cabina térmica. Colorimetría exacta garantizada.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Entrega perfecta</h3>
+        <p>Inspección final y entrega con garantía del trabajo realizado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="container">
+    <span class="section-label">Resultados</span>
+    <h2 class="section-title">Acabados de fábrica</h2>
+    <div class="photos-grid">
+      <div class="photo-item"><img src="foto-chapa.Pintura.jpg" alt="Cabina de pintura Auto-Betxí" loading="lazy"></div>
+      <div class="photo-item"><img src="foto-cabina.jpg" alt="Reparación de chapa en Betxí" loading="lazy" style="object-position:right center;"></div>
+      <div class="photo-item"><img src="foto_chapa.jpg" alt="Resultado final pintura Auto-Betxí" loading="lazy" style="object-position:left center;"></div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section alt">
+  <div class="container">
+    <span class="section-label">Preguntas frecuentes</span>
+    <h2 class="section-title">Dudas sobre chapa y pintura</h2>
+    <div class="faq-list">
+      <div>
+        <div class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')">¿Trabajáis con todas las aseguradoras? <span>+</span></div>
+        <div class="faq-a">Sí, trabajamos con todas las compañías aseguradoras. Nos encargamos de toda la gestión del parte para que no tengas que preocuparte de nada.</div>
+      </div>
+      <div>
+        <div class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')">¿Se nota la diferencia de color tras la reparación? <span>+</span></div>
+        <div class="faq-a">No. Utilizamos sistemas computerizados de colorimetría que reproducen exactamente el color original de tu vehículo, sin diferencias visibles.</div>
+      </div>
+      <div>
+        <div class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')">¿Cuánto tiempo tarda una reparación de chapa? <span>+</span></div>
+        <div class="faq-a">Depende de la extensión del daño. Un golpe pequeño puede estar listo en 1-2 días. Para daños más extensos o gestión con seguro, entre 3 y 7 días hábiles.</div>
+      </div>
+      <div>
+        <div class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')">¿Dais garantía en los trabajos de pintura? <span>+</span></div>
+        <div class="faq-a">Sí, todos nuestros trabajos de chapa y pintura tienen garantía. Si hay cualquier problema con el acabado, lo solucionamos sin coste adicional.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2>¿Tu coche tiene algún golpe?</h2>
+    <p>Pídenos presupuesto sin compromiso. Si tienes seguro, nos encargamos de todo.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="index.html#presupuesto" class="btn btn-gold">Pedir presupuesto gratis</a>
+      <a href="tel:+34964622505" class="btn btn-outline">☎ 964 62 25 05</a>
+      <a href="https://wa.me/34619960232" class="btn btn-primary" target="_blank" rel="noopener">WhatsApp directo</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Auto-Betxí S.L. · Polígono Industrial El Canyaret, Nave 6 · 12549 Betxí, Castellón · <a href="index.html" style="color:rgba(255,255,255,.6)">Volver al inicio</a></p>
+</footer>
+
+</body>
+</html>
