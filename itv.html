@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pre-ITV e ITV  | Auto-Betxí S.L. — Recogida y Entrega Incluida Castellón</title>
   <meta name="description" content="Pre-ITV e ITV en Betxí (Castellón). Revisión completa para garantizar el aprobado. Recogida y entrega del vehículo en la estación de ITV incluida. ☎ 964 62 25 05"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png"/>
   <link rel="canonical" href="https://www.autobetxi.es/itv.html"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -78,6 +81,11 @@
     footer{background:var(--navy);color:white;padding:32px 5%;text-align:center;font-size:.85rem;opacity:.7;}
     @media(max-width:768px){.checklist-grid{grid-template-columns:1fr;}.process-steps{grid-template-columns:repeat(2,1fr);}.process-steps::before{display:none;}.ventajas-grid{grid-template-columns:repeat(2,1fr);}.highlight-box{padding:32px 24px;}}
     @media(max-width:480px){.ventajas-grid{grid-template-columns:1fr;}.hero-btns{flex-direction:column;}}
+
+    /* Botón volver arriba */
+    #scroll-top{position:fixed;bottom:28px;right:28px;width:48px;height:48px;border-radius:50%;background:var(--gold);color:var(--navy);border:none;cursor:pointer;font-size:1.3rem;font-weight:700;box-shadow:0 4px 16px rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;z-index:999;}
+    #scroll-top.visible{opacity:1;pointer-events:auto;}
+    #scroll-top:hover{transform:translateY(-3px);}
   </style>
 </head>
 <body>
@@ -216,5 +224,12 @@
   <p>© 2025 Auto-Betxí S.L. · Polígono Industrial El Canyaret, Nave 6 · 12549 Betxí, Castellón · <a href="index.html" style="color:rgba(255,255,255,.6)">Volver al inicio</a></p>
 </footer>
 
+
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">↑</button>
+<script>
+  window.addEventListener("scroll",function(){
+    document.getElementById("scroll-top").classList.toggle("visible",window.scrollY>300);
+  });
+</script>
 </body>
 </html>

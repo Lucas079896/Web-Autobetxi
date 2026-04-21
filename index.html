@@ -7,6 +7,9 @@
   <meta name="description" content="Taller mecánico en Betxí (Castellón) especializado en mecánica, chapa y pintura, Pre-ITV e ITV. Diagnosis multimarca y todas las aseguradoras. Más de 20 años de experiencia. ☎ 964 62 25 05"/>
   <meta name="keywords" content="taller mecánico Betxí, chapa y pintura Betxí, mecánica Castellón, ITV Betxí, pre-ITV Castellón, taller multimarca Betxí, taller mecánico La Plana Baixa, reparación coches Betxí, diagnosis multimarca Castellón, Auto-Betxí, taller chapa Castellón, presupuesto taller Betxí"/>
   <link rel="canonical" href="https://www.autobetxi.es/"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png"/>
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-027V9SBK2S"></script>
@@ -155,6 +158,34 @@
 
       --header-h: 72px;
     }
+
+
+    /* ══ DROPDOWN SERVICIOS ══ */
+    .nav-has-dropdown { position: relative; }
+    .nav-has-dropdown > a { display:flex; align-items:center; gap:4px; }
+    .nav-dropdown-arrow { transition: transform .25s; display:inline-block; font-style:normal; font-size:.65rem; }
+    .nav-has-dropdown:hover .nav-dropdown-arrow { transform: rotate(180deg); }
+    .nav-dropdown {
+      position: absolute; top: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+      background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg); min-width: 220px; padding: 8px;
+      opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(-6px);
+      transition: opacity .22s, transform .22s;
+      z-index: 3000;
+    }
+    .nav-has-dropdown:hover .nav-dropdown {
+      opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0);
+    }
+    .nav-dropdown a {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px; border-radius: 8px;
+      font-size: .88rem; font-weight: 500; color: var(--gray-600);
+      transition: background .15s, color .15s;
+      white-space: nowrap;
+    }
+    .nav-dropdown a:hover { background: var(--gray-100); color: var(--navy); }
+    .nav-dropdown-icon { font-size: 1.1rem; width: 24px; text-align: center; }
+    .nav-dropdown-divider { height: 1px; background: var(--gray-200); margin: 6px 0; }
 
     /* ── RESET ── */
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
@@ -1084,6 +1115,11 @@
     @media (max-width: 480px) {
       .gallery-grid { grid-template-columns: 1fr; }
     }
+
+    /* Botón volver arriba */
+    #scroll-top{position:fixed;bottom:28px;right:28px;width:48px;height:48px;border-radius:50%;background:var(--gold);color:var(--navy);border:none;cursor:pointer;font-size:1.3rem;font-weight:700;box-shadow:0 4px 16px rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;z-index:999;}
+    #scroll-top.visible{opacity:1;pointer-events:auto;}
+    #scroll-top:hover{transform:translateY(-3px);}
   </style>
 </head>
 <body>
@@ -1128,7 +1164,16 @@
     <!-- Desktop nav -->
     <nav class="nav-links" aria-label="Navegación principal">
       <a href="#inicio"><svg class="ico" aria-hidden="true" style="width:.9em;height:.9em"><use href="#ico-home"/></svg> Inicio</a>
-      <a href="#servicios">Servicios</a>
+      <div class="nav-has-dropdown">
+        <a href="#servicios">Servicios <i class="nav-dropdown-arrow">▾</i></a>
+        <div class="nav-dropdown">
+          <a href="mecanica.html"><span class="nav-dropdown-icon">🔧</span> Mecánica</a>
+          <a href="chapa-pintura.html"><span class="nav-dropdown-icon">🎨</span> Chapa y Pintura</a>
+          <a href="itv.html"><span class="nav-dropdown-icon">📋</span> Pre-ITV e ITV</a>
+          <div class="nav-dropdown-divider"></div>
+          <a href="#presupuesto"><span class="nav-dropdown-icon">💬</span> Pedir presupuesto</a>
+        </div>
+      </div>
       <a href="#galeria">Galería</a>
       <a href="#opiniones">Opiniones</a>
       <a href="#faq">FAQ</a>
@@ -1601,41 +1646,159 @@
             <span class="lbl">Google Business · +40 reseñas verificadas</span>
           </div>
         </div>
-        <div class="why-rev-grid">
-          <div class="why-rev-card">
-            <div class="why-rev-stars">★★★★★</div>
-            <p class="why-rev-text">"Un taller excelente. Profesionales y muy atentos. El trabajo de pintura en mi coche ha quedado impecable, como si saliera de fábrica."</p>
-            <div class="why-rev-author">
-              <div class="why-rev-avatar">JR</div>
-              <div>
-                <div class="why-rev-name">Jose Ramon</div>
-                <div class="why-rev-meta">Cliente verificado · Google</div>
+        <!-- ── CARRUSEL ESTILO GOOGLE ── -->
+        <div class="grev-carousel-wrap">
+          <button class="grev-arrow grev-arrow-left" onclick="grevScroll(-1)" aria-label="Anterior">&#8249;</button>
+          <div class="grev-track" id="grevTrack">
+
+            <!-- RESEÑA 1 — Cambia nombre, iniciales, tiempo y texto -->
+            <div class="grev-card">
+              <div class="grev-card-top">
+                <div class="grev-avatar" style="background:linear-gradient(135deg,#4285f4,#34a853)">JR</div>
+                <div class="grev-meta">
+                  <div class="grev-name">Jose Ramon</div>
+                  <div class="grev-time">hace 2 meses</div>
+                </div>
+                <svg class="grev-google" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
               </div>
+              <div class="grev-stars">★★★★★ <span class="grev-verified">✔</span></div>
+              <p class="grev-text">Un taller excelente. Profesionales y muy atentos. El trabajo de pintura en mi coche ha quedado impecable, como si saliera de fábrica. ¡100% recomendable!</p>
             </div>
-          </div>
-          <div class="why-rev-card">
-            <div class="why-rev-stars">★★★★★</div>
-            <p class="why-rev-text">"Confianza total. Te explican todo con claridad, sin sorpresas. Rapidez y buen precio. El mejor taller de la zona sin ninguna duda."</p>
-            <div class="why-rev-author">
-              <div class="why-rev-avatar">MC</div>
-              <div>
-                <div class="why-rev-name">Maria Carmen</div>
-                <div class="why-rev-meta">Cliente verificada · Google</div>
+
+            <!-- RESEÑA 2 — Cambia nombre, iniciales, tiempo y texto -->
+            <div class="grev-card">
+              <div class="grev-card-top">
+                <div class="grev-avatar" style="background:linear-gradient(135deg,#ea4335,#fbbc05)">MC</div>
+                <div class="grev-meta">
+                  <div class="grev-name">Maria Carmen</div>
+                  <div class="grev-time">hace 3 meses</div>
+                </div>
+                <svg class="grev-google" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
               </div>
+              <div class="grev-stars">★★★★★ <span class="grev-verified">✔</span></div>
+              <p class="grev-text">Confianza total. Te explican todo con claridad, sin sorpresas en la factura. Rapidez y buen precio. El mejor taller de la zona sin ninguna duda.</p>
             </div>
-          </div>
-          <div class="why-rev-card">
-            <div class="why-rev-stars">★★★★★</div>
-            <p class="why-rev-text">"Grandes profesionales de la chapa y pintura. Gestión rápida con el seguro y el coche entregado a tiempo. Muy recomendable."</p>
-            <div class="why-rev-author">
-              <div class="why-rev-avatar">PV</div>
-              <div>
-                <div class="why-rev-name">Paco V.</div>
-                <div class="why-rev-meta">Cliente verificado · Google</div>
+
+            <!-- RESEÑA 3 — Cambia nombre, iniciales, tiempo y texto -->
+            <div class="grev-card">
+              <div class="grev-card-top">
+                <div class="grev-avatar" style="background:linear-gradient(135deg,#1a56db,#3b82f6)">PV</div>
+                <div class="grev-meta">
+                  <div class="grev-name">Paco V.</div>
+                  <div class="grev-time">hace 1 mes</div>
+                </div>
+                <svg class="grev-google" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
               </div>
+              <div class="grev-stars">★★★★★ <span class="grev-verified">✔</span></div>
+              <p class="grev-text">Grandes profesionales de la chapa y pintura. Gestión rápida con el seguro y el coche entregado antes de lo previsto. Muy recomendable.</p>
             </div>
+
+            <!-- RESEÑA 4 — Cambia nombre, iniciales, tiempo y texto -->
+            <div class="grev-card">
+              <div class="grev-card-top">
+                <div class="grev-avatar" style="background:linear-gradient(135deg,#34a853,#1a56db)">AM</div>
+                <div class="grev-meta">
+                  <div class="grev-name">Ana Martínez</div>
+                  <div class="grev-time">hace 5 meses</div>
+                </div>
+                <svg class="grev-google" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+              </div>
+              <div class="grev-stars">★★★★★ <span class="grev-verified">✔</span></div>
+              <p class="grev-text">Llevé el coche para la pre-ITV y quedé encantada. Lo recogieron en casa, lo pasaron y me lo trajeron aprobado. Servicio 10.</p>
+            </div>
+
+            <!-- RESEÑA 5 — Cambia nombre, iniciales, tiempo y texto -->
+            <div class="grev-card">
+              <div class="grev-card-top">
+                <div class="grev-avatar" style="background:linear-gradient(135deg,#fbbc05,#ea4335)">RL</div>
+                <div class="grev-meta">
+                  <div class="grev-name">Roberto L.</div>
+                  <div class="grev-time">hace 4 meses</div>
+                </div>
+                <svg class="grev-google" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+              </div>
+              <div class="grev-stars">★★★★★ <span class="grev-verified">✔</span></div>
+              <p class="grev-text">Trato cercano y presupuesto claro desde el primer momento. Reparación de mecánica bien hecha y en el tiempo acordado. Repetiré sin duda.</p>
+            </div>
+
           </div>
+          <button class="grev-arrow grev-arrow-right" onclick="grevScroll(1)" aria-label="Siguiente">&#8250;</button>
         </div>
+
+        <style>
+          .grev-carousel-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 36px;
+          }
+          .grev-track {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            flex: 1;
+            padding: 4px 2px 8px;
+          }
+          .grev-track::-webkit-scrollbar { display: none; }
+          .grev-card {
+            background: white;
+            border-radius: 14px;
+            padding: 22px 20px;
+            min-width: 280px;
+            max-width: 300px;
+            flex-shrink: 0;
+            scroll-snap-align: start;
+            box-shadow: 0 2px 12px rgba(0,0,0,.12);
+            transition: transform .25s, box-shadow .25s;
+          }
+          .grev-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,0,0,.18); }
+          .grev-card-top {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+          }
+          .grev-avatar {
+            width: 44px; height: 44px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: .9rem; color: white;
+            flex-shrink: 0;
+            font-family: var(--font-display);
+          }
+          .grev-meta { flex: 1; }
+          .grev-name { font-weight: 700; font-size: .9rem; color: #1e3a6e; line-height: 1.2; }
+          .grev-time { font-size: .75rem; color: #9ca3af; margin-top: 2px; }
+          .grev-google { width: 22px; height: 22px; flex-shrink: 0; margin-left: auto; }
+          .grev-stars { color: #f59e0b; font-size: 1rem; letter-spacing: 1px; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+          .grev-verified { color: #4285F4; font-size: .8rem; }
+          .grev-text { font-size: .85rem; color: #4b5563; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+          .grev-arrow {
+            width: 38px; height: 38px; border-radius: 50%;
+            border: 1px solid rgba(255,255,255,.2);
+            background: rgba(255,255,255,.1);
+            color: white; font-size: 1.4rem; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            transition: background .2s, transform .2s;
+            line-height: 1;
+          }
+          .grev-arrow:hover { background: rgba(255,255,255,.2); transform: scale(1.1); }
+          @media (max-width: 600px) {
+            .grev-card { min-width: 240px; }
+            .grev-arrow { display: none; }
+          }
+        </style>
+        <script>
+          function grevScroll(dir) {
+            var track = document.getElementById('grevTrack');
+            track.scrollBy({ left: dir * 310, behavior: 'smooth' });
+          }
+        </script>
         <div class="why-reviews-cta">
           <div class="google-verified-badge">
             <svg viewBox="0 0 24 24" fill="none" style="width:20px;height:20px;flex-shrink:0"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
@@ -1973,5 +2136,12 @@
   }
 </script>
 
+
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">↑</button>
+<script>
+  window.addEventListener("scroll",function(){
+    document.getElementById("scroll-top").classList.toggle("visible",window.scrollY>300);
+  });
+</script>
 </body>
 </html>
