@@ -1526,6 +1526,10 @@
             <label>Marca y Modelo</label>
             <input type="text" id="q-modelo" class="form-control" placeholder="Ej: Seat Leon">
           </div>
+          <div class="form-group">
+            <label>Kilómetros del Vehículo (Opcional)</label>
+            <input type="number" id="q-km" class="form-control" placeholder="Ej: 85000" min="0">
+          </div>
           <div class="form-group full">
             <label>Tipo de Servicio</label>
             <select id="q-servicio" class="form-control">
@@ -2113,6 +2117,7 @@
     const tel           = document.getElementById('q-tel').value.trim();
     const matricula     = document.getElementById('q-matricula').value.trim().toUpperCase();
     const modelo        = document.getElementById('q-modelo').value.trim();
+    const km            = document.getElementById('q-km').value.trim();
     const servicio      = document.getElementById('q-servicio').value;
     const observaciones = document.getElementById('q-observaciones').value.trim();
 
@@ -2127,6 +2132,7 @@
       '📱 Mi teléfono: ' + tel + '\n' +
       (matricula     ? '🔑 Matrícula: ' + matricula + '\n' : '') +
       (modelo        ? '🚗 Vehículo: ' + modelo + '\n' : '') +
+      (km            ? '🛣️ Kilómetros: ' + parseInt(km).toLocaleString('es-ES') + ' km\n' : '') +
       '🔧 Servicio que necesito: ' + (servicio || 'Pendiente de definir') + '\n' +
       (observaciones ? '📝 Notas: ' + observaciones : '') +
       '\n¿Podéis hacerme un presupuesto?'
