@@ -337,53 +337,131 @@
     .ann-bar a:hover { background:rgba(13,31,60,.2); }
 
     /* ═══════════════════════════════════════
-       HERO
+       HERO — SPLIT LAYOUT
        ═══════════════════════════════════════ */
     .hero {
-      position:relative; min-height:100svh; min-height:100vh;
+      position:relative;
+      min-height:100vh;
       display:flex; align-items:center;
-      background:var(--navy); overflow:hidden;
-      color:white;
+      background: #07111f;
+      overflow:hidden; color:white;
     }
+
+    /* Full-bleed background photo — right side fades out */
     .hero-bg {
       position:absolute; inset:0;
       background-image: url('image_89604b.webp');
-      background-size:cover; background-position:center 40%;
-      opacity:.25; transition:opacity 1s ease;
+      background-size:cover; background-position:60% center;
+      opacity:.45; transition:opacity 1.2s ease;
     }
-    .hero-bg.webp { background-image: url('image_89604b.webp'); }
-    .hero-bg.loaded { opacity:.35; }
+    .hero-bg.loaded { opacity:.55; }
+
+    /* Left-side dark gradient so text is always readable */
     .hero-overlay {
       position:absolute; inset:0;
-      background:linear-gradient(135deg, rgba(13,31,60,.92) 0%, rgba(24,71,200,.55) 50%, rgba(13,31,60,.75) 100%);
+      background: linear-gradient(
+        100deg,
+        rgba(7,17,31,1)    0%,
+        rgba(7,17,31,.97)  35%,
+        rgba(7,17,31,.75)  55%,
+        rgba(7,17,31,.1)   80%,
+        rgba(7,17,31,0)    100%
+      );
     }
-    /* Animated grid lines */
+
+    /* Subtle grid texture */
     .hero-grid {
       position:absolute; inset:0; pointer-events:none;
       background-image:
-        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
       background-size:60px 60px;
     }
-    /* Glowing blob */
-    .hero-blob {
-      position:absolute; border-radius:50%; pointer-events:none;
+
+    /* Blue glow behind the car (right side) */
+    .hero-blob { position:absolute; border-radius:50%; pointer-events:none; }
+    .hero-blob-1 {
+      width:700px; height:700px; top:-100px; right:-100px;
+      background:radial-gradient(circle, rgba(37,99,235,.35) 0%, transparent 65%);
+    }
+    .hero-blob-2 {
+      width:400px; height:400px; bottom:-80px; right:15%;
       background:radial-gradient(circle, rgba(96,165,250,.2) 0%, transparent 70%);
     }
-    .hero-blob-1 { width:700px; height:700px; top:-200px; right:-200px; }
-    .hero-blob-2 { width:500px; height:500px; bottom:-150px; left:-100px; background:radial-gradient(circle, rgba(245,158,11,.15) 0%, transparent 70%); }
 
-    .hero-content {
-      position:relative; z-index:10;
-      padding:120px 5% 80px;
-      max-width:1200px; margin:0 auto; width:100%;
+    /* Diagonal accent stripe */
+    .hero-stripe {
+      position:absolute; top:0; left:42%; bottom:0; width:3px;
+      background: linear-gradient(to bottom, transparent, rgba(37,99,235,.6) 30%, rgba(96,165,250,.8) 60%, transparent);
+      transform: skewX(-8deg);
     }
 
+    /* Split content layout */
+    .hero-content {
+      position:relative; z-index:10;
+      padding:100px 5% 80px;
+      max-width:1280px; margin:0 auto; width:100%;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:60px;
+      align-items:center;
+    }
+    .hero-left { display:flex; flex-direction:column; }
+    .hero-right {
+      display:flex; align-items:center; justify-content:center;
+      position:relative;
+    }
+
+    /* Car image card */
+    .hero-car-img {
+      width:100%; max-width:580px;
+      border-radius:24px; overflow:hidden;
+      position:relative;
+      box-shadow: 0 40px 100px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.07);
+      animation: carFloat 6s ease-in-out infinite;
+    }
+    .hero-car-img img {
+      width:100%; height:360px; object-fit:cover; display:block;
+      filter: brightness(1.05) contrast(1.05);
+    }
+    .hero-car-img::after {
+      content:''; position:absolute; inset:0;
+      background: linear-gradient(to top, rgba(7,17,31,.7) 0%, transparent 50%);
+    }
+    @keyframes carFloat {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-10px); }
+    }
+
+    /* Car stats overlay inside image */
+    .hero-car-stats {
+      position:absolute; bottom:0; left:0; right:0; z-index:2;
+      display:flex; justify-content:space-around;
+      padding:20px 24px;
+    }
+    .hcs-item { text-align:center; }
+    .hcs-num { font-family:var(--fd); font-size:1.8rem; color:var(--gold); display:block; line-height:1; letter-spacing:1px; }
+    .hcs-lbl { font-size:.65rem; color:rgba(255,255,255,.6); text-transform:uppercase; letter-spacing:1.5px; margin-top:3px; display:block; }
+    .hcs-sep { width:1px; background:rgba(255,255,255,.2); align-self:stretch; }
+
+    /* Floating Google badge */
+    .hero-g-badge {
+      position:absolute; top:-18px; right:-10px; z-index:3;
+      background:white; border-radius:14px;
+      padding:12px 16px; box-shadow:0 8px 32px rgba(0,0,0,.35);
+      display:flex; align-items:center; gap:10px;
+      animation:fadeUp .9s ease .6s both;
+    }
+    .hero-g-badge .g-stars { color:#f59e0b; font-size:.9rem; letter-spacing:1px; }
+    .hero-g-badge .g-val { font-family:var(--fd); font-size:1.4rem; color:#1a2235; line-height:1; }
+    .hero-g-badge .g-lbl { font-size:.65rem; color:#4e5a72; line-height:1.3; max-width:70px; }
+
+    /* Pills / badges row */
     .hero-eyebrow {
       display:inline-flex; align-items:center; gap:10px;
-      background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15);
+      background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.13);
       border-radius:100px; padding:7px 18px; margin-bottom:0;
-      animation:fadeUp .8s ease both;
+      animation:fadeUp .8s ease both; width:fit-content;
     }
     .hero-eyebrow-dot { width:7px; height:7px; border-radius:50%; background:var(--gold); flex-shrink:0; }
     .hero-eyebrow span { font-size:.78rem; font-weight:600; text-transform:uppercase; letter-spacing:2px; opacity:.85; }
@@ -391,7 +469,7 @@
     .hero-status {
       display:inline-flex; align-items:center; gap:8px;
       background:rgba(34,197,94,.15); border:1px solid rgba(34,197,94,.3);
-      border-radius:100px; padding:7px 16px; margin-left:0;
+      border-radius:100px; padding:7px 16px;
       animation:fadeUp .8s ease .05s both;
     }
     .hero-status-dot { width:7px; height:7px; border-radius:50%; background:var(--green); animation:pulse 2s infinite; flex-shrink:0; }
@@ -401,23 +479,19 @@
 
     .hero h1 {
       font-family:var(--fd);
-      font-size:clamp(3rem,7.5vw,6.5rem);
-      font-weight:400; /* Bebas Neue is inherently bold */
-      line-height:.95;
+      font-size:clamp(2.8rem, 5.5vw, 5.8rem);
+      font-weight:400;
+      line-height:.93;
       letter-spacing:1px;
-      margin-bottom:28px;
+      margin-bottom:22px;
       animation:fadeUp .85s ease .15s both;
     }
     .hero h1 em { font-style:normal; color:var(--gold); }
-    .hero h1 .line-outline {
-      -webkit-text-stroke:2px rgba(255,255,255,.5);
-      color:transparent;
-    }
 
     .hero-sub {
-      font-size:clamp(1rem, 2vw, 1.15rem);
-      font-weight:400; opacity:.8;
-      max-width:540px; margin-bottom:40px; line-height:1.7;
+      font-size:.97rem;
+      font-weight:400; opacity:.75;
+      max-width:480px; margin-bottom:36px; line-height:1.75;
       animation:fadeUp .85s ease .28s both;
     }
 
@@ -427,6 +501,18 @@
     }
 
     @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+
+    /* Trust row below buttons */
+    .hero-trust-row {
+      display:flex; align-items:center; gap:20px; flex-wrap:wrap;
+      margin-top:36px; padding-top:28px;
+      border-top:1px solid rgba(255,255,255,.09);
+      animation:fadeUp .85s ease .55s both;
+    }
+    .htr-item { display:flex; align-items:center; gap:8px; }
+    .htr-icon { font-size:1.1rem; }
+    .htr-text { font-size:.78rem; opacity:.65; line-height:1.3; }
+    .htr-sep { width:1px; height:28px; background:rgba(255,255,255,.12); }
 
     /* Buttons */
     .btn {
@@ -441,8 +527,8 @@
     .btn-blue:hover { box-shadow:0 8px 28px rgba(37,99,235,.55); filter:brightness(1.08); }
     .btn-gold { background:var(--gold); color:var(--navy); box-shadow:0 4px 14px rgba(245,158,11,.35); font-weight:700; }
     .btn-gold:hover { box-shadow:0 8px 24px rgba(245,158,11,.5); }
-    .btn-outline-w { background:transparent; color:white; border:1.5px solid rgba(255,255,255,.45); }
-    .btn-outline-w:hover { background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.8); }
+    .btn-outline-w { background:transparent; color:white; border:1.5px solid rgba(255,255,255,.35); }
+    .btn-outline-w:hover { background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.7); }
     .btn-wsp { background:#25d366; color:white; box-shadow:0 4px 14px rgba(37,211,102,.35); }
     .btn-wsp:hover { box-shadow:0 8px 24px rgba(37,211,102,.5); filter:brightness(1.06); }
     .btn-maps { background:#ea4335; color:white; box-shadow:0 4px 14px rgba(234,67,53,.35); }
@@ -450,25 +536,24 @@
     .btn-navy { background:var(--navy); color:white; }
     .btn-navy:hover { box-shadow:var(--sh-lg); filter:brightness(1.1); }
 
-    /* Hero trust strip */
-    .hero-trust {
-      display:flex; align-items:center; gap:32px; flex-wrap:wrap;
-      margin-top:64px; padding-top:40px;
-      border-top:1px solid rgba(255,255,255,.1);
-      animation:fadeUp .85s ease .55s both;
-    }
+    /* Hero trust strip (legacy) */
+    .hero-trust { display:none; }
     .ht-item { display:flex; align-items:center; gap:10px; }
-    .ht-num {
-      font-family:var(--fd); font-size:2rem; color:var(--gold);
-      line-height:1; letter-spacing:1px;
-    }
+    .ht-num { font-family:var(--fd); font-size:2rem; color:var(--gold); line-height:1; }
     .ht-lbl { font-size:.75rem; font-weight:400; opacity:.65; line-height:1.35; }
+
+    /* Responsive hero */
+    @media(max-width:900px) {
+      .hero-content { grid-template-columns:1fr; gap:40px; }
+      .hero-right { display:none; }
+      .hero h1 { font-size:clamp(2.8rem,8vw,5rem); }
+    }
 
     /* Scroll hint */
     .scroll-hint {
       position:absolute; bottom:32px; left:50%; transform:translateX(-50%);
       display:flex; flex-direction:column; align-items:center; gap:8px;
-      opacity:.45; animation:scrollBounce 2s ease-in-out infinite;
+      opacity:.35; animation:scrollBounce 2s ease-in-out infinite;
     }
     .sa { width:20px; height:32px; border:2px solid white; border-radius:10px; position:relative; }
     .sa::after { content:''; position:absolute; top:5px; left:50%; transform:translateX(-50%); width:4px; height:8px; border-radius:2px; background:white; animation:scrollDot 2s ease-in-out infinite; }
@@ -700,6 +785,46 @@
     }
     .why-float-badge small { display:block; font-family:var(--fb); font-size:.65rem; font-weight:600; text-transform:uppercase; letter-spacing:1px; margin-top:4px; }
 
+    /* ─ TRUST BAR OVERRIDE (more vibrant) ─ */
+    .trust-bar {
+      background: linear-gradient(135deg, #0d1f3c 0%, #1e3a6e 100%) !important;
+      border-top: 2px solid rgba(245,158,11,.4) !important;
+      border-bottom: 2px solid rgba(245,158,11,.2) !important;
+    }
+    .tb-item { color: white !important; font-weight: 600 !important; font-size: .86rem !important; }
+    .tb-item svg { color: var(--gold) !important; }
+
+    /* ─ ANNOUNCEMENT BAR ENHANCEMENTS ─ */
+    .ann-bar {
+      background: linear-gradient(90deg, #d97706 0%, #f59e0b 50%, #d97706 100%) !important;
+      background-size: 200% 100% !important;
+      animation: shimmerBar 3s ease-in-out infinite !important;
+    }
+    @keyframes shimmerBar {
+      0%,100% { background-position: 0% 0%; }
+      50% { background-position: 100% 0%; }
+    }
+
+    /* ─ PRESUPUESTO BOX URGENCY BADGE ─ */
+    .urgency-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, #dc2626, #ef4444);
+      color: white; border-radius: 100px;
+      padding: 6px 16px; font-size: .75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px;
+      margin-bottom: 14px;
+      animation: pulse 2s infinite;
+    }
+    .urgency-dot { width: 7px; height: 7px; background: white; border-radius: 50%; }
+
+    /* ─ STAT ITEMS ENHANCED ─ */
+    .stat-item {
+      position: relative;
+      transition: transform .3s;
+    }
+    .stat-item:hover { transform: translateY(-4px); }
+    .stat-num { text-shadow: 0 0 40px rgba(245,158,11,.5); }
+
     /* ═══════════════════════════════════════
        TESTIMONIOS
        ═══════════════════════════════════════ */
@@ -804,27 +929,35 @@
        ═══════════════════════════════════════ */
     .budget-sec {
       padding:100px 5%;
-      background:linear-gradient(160deg, #eff6ff 0%, #f0fdf4 100%);
+      background: linear-gradient(160deg, #0d1f3c 0%, #152a5e 50%, #1a3570 100%);
+      position: relative;
+    }
+    .budget-sec::before {
+      content:''; position:absolute; inset:0;
+      background: radial-gradient(ellipse 60% 50% at 80% 50%, rgba(96,165,250,.12) 0%, transparent 60%);
+      pointer-events:none;
     }
     .budget-inner { display:grid; grid-template-columns:1fr 1.25fr; gap:80px; align-items:center; }
-    .budget-left h2 { font-family:var(--fd); font-size:clamp(2rem,4.5vw,3.5rem); color:var(--navy); margin-bottom:18px; letter-spacing:1px; line-height:1; }
-    .budget-left p { font-size:1rem; color:var(--g600); margin-bottom:32px; }
+    .budget-left h2 { font-family:var(--fd); font-size:clamp(2rem,4.5vw,3.5rem); color:white; margin-bottom:18px; letter-spacing:1px; line-height:1; }
+    .budget-left p { font-size:1rem; color:rgba(255,255,255,.7); margin-bottom:32px; }
     .budget-feats { list-style:none; display:flex; flex-direction:column; gap:14px; }
-    .budget-feats li { display:flex; align-items:flex-start; gap:12px; font-size:.93rem; color:var(--g600); }
-    .check-c { width:22px; height:22px; border-radius:50%; background:#dcfce7; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; }
-    .check-c svg { width:12px; height:12px; color:#16a34a; }
-    .budget-contacts { margin-top:32px; padding-top:32px; border-top:1px solid var(--g200); display:flex; flex-direction:column; gap:14px; }
+    .budget-feats li { display:flex; align-items:flex-start; gap:12px; font-size:.93rem; color:rgba(255,255,255,.75); }
+    .check-c { width:22px; height:22px; border-radius:50%; background:rgba(34,197,94,.25); display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; }
+    .check-c svg { width:12px; height:12px; color:#4ade80; }
+    .budget-contacts { margin-top:32px; padding-top:32px; border-top:1px solid rgba(255,255,255,.12); display:flex; flex-direction:column; gap:14px; }
     .bc-item { display:flex; align-items:center; gap:14px; }
     .bc-ico { width:42px; height:42px; border-radius:var(--r-sm); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1.2rem; }
-    .bc-ico-tel { background:#eff6ff; }
-    .bc-ico-wsp { background:#f0fdf4; }
-    .bc-text strong { display:block; font-size:.95rem; color:var(--navy); }
-    .bc-text span { font-size:.78rem; color:var(--g400); }
+    .bc-ico-tel { background:rgba(37,99,235,.2); }
+    .bc-ico-wsp { background:rgba(37,211,102,.15); }
+    .bc-text strong { display:block; font-size:.95rem; color:white; }
+    .bc-text a { color: white !important; }
+    .bc-text span { font-size:.78rem; color:rgba(255,255,255,.5); }
 
     .budget-form {
-      background:var(--g100); border-radius:var(--r-xl);
+      background:white; border-radius:var(--r-xl);
       padding:44px 40px;
       border:1px solid var(--g200);
+      box-shadow: 0 32px 80px rgba(0,0,0,.3);
     }
     .budget-form h3 { font-family:var(--fd); font-size:1.8rem; color:var(--navy); margin-bottom:6px; letter-spacing:.5px; }
     .budget-form .sub { font-size:.88rem; color:var(--g400); margin-bottom:28px; }
@@ -843,14 +976,15 @@
     .fg2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
     .fg-full { grid-column:1/-1; }
     .btn-submit {
-      width:100%; padding:16px; border-radius:var(--r-md); border:none;
-      background:var(--blue-2); color:white; font-family:var(--fb);
-      font-size:.95rem; font-weight:700; cursor:pointer;
+      width:100%; padding:18px; border-radius:var(--r-md); border:none;
+      background:var(--gold); color:var(--navy); font-family:var(--fb);
+      font-size:1rem; font-weight:800; cursor:pointer;
       display:flex; align-items:center; justify-content:center; gap:10px;
       transition:filter .2s, transform .2s, box-shadow .2s;
       margin-top:6px; text-transform:uppercase; letter-spacing:.8px;
+      box-shadow: 0 8px 24px rgba(245,158,11,.45);
     }
-    .btn-submit:hover { filter:brightness(1.08); transform:translateY(-2px); box-shadow:0 10px 28px rgba(37,99,235,.4); }
+    .btn-submit:hover { filter:brightness(1.08); transform:translateY(-2px); box-shadow:0 12px 32px rgba(245,158,11,.55); }
     .form-note { font-size:.72rem; color:var(--g400); margin-top:10px; text-align:center; }
 
     /* ── VER MÁS RESEÑAS ── */
@@ -869,12 +1003,11 @@
 
     /* ── PRESUPUESTO RECUADRO ── */
     .budget-box {
-      background:white; border-radius:var(--r-xl);
-      box-shadow:var(--sh-xl); border:1px solid var(--g200);
-      padding:60px 56px;
+      background: transparent;
+      padding: 0;
     }
-    @media(max-width:1024px){ .budget-box { padding:40px 28px; } }
-    @media(max-width:768px){  .budget-box { padding:28px 18px; } }
+    @media(max-width:1024px){ .budget-box { padding:0; } }
+    @media(max-width:768px){  .budget-box { padding:0; } }
 
     /* ═══════════════════════════════════════
        FAQ
@@ -1194,54 +1327,116 @@
 
 
 <!-- ══════════════════════════════════════════
-     HERO
+     HERO — SPLIT LAYOUT
      ══════════════════════════════════════════ -->
 <section class="hero" id="inicio">
   <div class="hero-bg" id="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-grid"></div>
+  <div class="hero-stripe"></div>
   <div class="hero-blob hero-blob-1"></div>
   <div class="hero-blob hero-blob-2"></div>
 
   <div class="hero-content">
-    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:28px;">
-      <div class="hero-eyebrow">
-        <span class="hero-eyebrow-dot"></span>
-        <span>Taller en Betxí · Más de 20 años</span>
+
+    <!-- LEFT: text + CTAs -->
+    <div class="hero-left">
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:nowrap;margin-bottom:24px;">
+        <div class="hero-eyebrow" style="margin-bottom:0;">
+          <span class="hero-eyebrow-dot"></span>
+          <span>Taller en Betxí · Desde 1986</span>
+        </div>
+        <div class="hero-status" id="hero-status">
+          <span class="hero-status-dot" id="status-dot"></span>
+          <span id="status-txt">ABIERTO AHORA</span>
+        </div>
       </div>
-      <div class="hero-status" id="hero-status">
-        <span class="hero-status-dot" id="status-dot"></span>
-        <span id="status-txt">ABIERTO AHORA</span>
+
+      <h1>
+        TU COCHE<br>
+        EN MANOS<br>
+        DE <em>EXPERTOS</em>
+      </h1>
+
+      <p class="hero-sub">
+        Taller mecánico multimarca en Betxí (Castellón). Mecánica, chapa y pintura, Pre-ITV e ITV. <strong style="color:rgba(255,255,255,.9);">Presupuesto sin compromiso en menos de 2 horas.</strong>
+      </p>
+
+      <div class="hero-actions">
+        <a href="#presupuesto" class="btn btn-gold" style="font-size:.95rem;padding:16px 30px;">
+          <svg class="ico" style="width:.95em;height:.95em"><use href="#ico-whatsapp"/></svg>
+          Pide tu presupuesto gratis
+        </a>
+        <a href="tel:+34964622505" class="btn btn-outline-w">
+          <svg class="ico" style="width:.95em;height:.95em"><use href="#ico-phone"/></svg>
+          964 62 25 05
+        </a>
+      </div>
+
+      <!-- Trust row -->
+      <div class="hero-trust-row">
+        <div class="htr-item">
+          <span class="htr-icon">🛡️</span>
+          <span class="htr-text">Garantía<br>de fábrica</span>
+        </div>
+        <div class="htr-sep"></div>
+        <div class="htr-item">
+          <span class="htr-icon">⚡</span>
+          <span class="htr-text">Respuesta<br>en 2 horas</span>
+        </div>
+        <div class="htr-sep"></div>
+        <div class="htr-item">
+          <span class="htr-icon">🚗</span>
+          <span class="htr-text">Recogida<br>incluida</span>
+        </div>
+        <div class="htr-sep"></div>
+        <div class="htr-item">
+          <span class="htr-icon">📋</span>
+          <span class="htr-text">Todas las<br>aseguradoras</span>
+        </div>
       </div>
     </div>
 
-    <h1>
-      TU COCHE<br>
-      EN MANOS<br>
-      DE <em>EXPERTOS</em>
-    </h1>
+    <!-- RIGHT: car image + Google badge -->
+    <div class="hero-right">
+      <div style="position:relative;width:100%;">
+        <!-- Google rating floating badge -->
+        <div class="hero-g-badge">
+          <svg width="22" height="22" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+          <div>
+            <div class="g-stars">★★★★★</div>
+            <div style="display:flex;align-items:baseline;gap:5px;">
+              <span class="g-val">4.7</span>
+              <span class="g-lbl">+45 reseñas Google</span>
+            </div>
+          </div>
+        </div>
 
-    <p class="hero-sub">
-      Taller mecánico multimarca en Betxí (Castellón) con más de 20 años de experiencia. Mecánica, chapa y pintura, Pre-ITV e ITV. 
-        </p>
-
-    <div class="hero-actions">
-      <a href="#presupuesto" class="btn btn-gold">
-        <svg class="ico" style="width:.95em;height:.95em"><use href="#ico-whatsapp"/></svg>
-        Pide tu presupuesto
-      </a>
-      <a href="tel:+34964622505" class="btn btn-outline-w">
-        <svg class="ico" style="width:.95em;height:.95em"><use href="#ico-phone"/></svg>
-        964 62 25 05
-      </a>
-      <a href="https://www.google.com/maps/dir/?api=1&destination=AUTO-BETXI" target="_blank" class="btn btn-outline-w">
-        <svg class="ico" style="width:.95em;height:.95em"><use href="#ico-nav"/></svg>
-        Cómo llegar
-      </a>
+        <!-- Car image card -->
+        <div class="hero-car-img">
+          <picture>
+            <source srcset="foto_chapa.webp" type="image/webp">
+            <img src="foto_chapa.webp" alt="Taller Auto-Betxí — mecánica y chapa en Betxí Castellón" loading="eager">
+          </picture>
+          <!-- Stats overlay at bottom of card -->
+          <div class="hero-car-stats">
+            <div class="hcs-item">
+              <span class="hcs-num"></span>
+            </div>
+            <div class="hcs-sep"></div>
+            <div class="hcs-item">
+              <span class="hcs-num">Tu coche, como nuevo otra vez</span>
+            </div>
+            <div class="hcs-sep"></div>
+            <div class="hcs-item">
+              <span class="hcs-num"></span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    
-  </div>
+  </div><!-- /hero-content -->
 
   <div class="scroll-hint" aria-hidden="true">
     <div class="sa"></div>
@@ -1300,27 +1495,7 @@
 
 
 <!-- ══ TRUST BAR ══ -->
-<div class="trust-bar">
-  <div class="tb-item">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-    Garantía de fábrica mantenida
-  </div>
-  <div class="tb-sep"></div>
-  <div class="tb-item">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-    Respuesta en &lt;2 horas
-  </div>
-  <div class="tb-sep"></div>
-  <div class="tb-item">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-    Presupuesto  sin compromiso
-  </div>
-  <div class="tb-sep"></div>
-  <div class="tb-item">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-    Recogida y entrega incluida
-  </div>
-</div>
+
 
 
 <!-- ══════════════════════════════════════════
@@ -1330,7 +1505,7 @@
   <div class="wrap">
     <div class="sh">
       <span class="sec-label">Lo que hacemos</span>
-      <h2 class="sec-title">Servicios especializados</h2>
+      <h2 class="sec-title">Todo lo que necesita tu coche</h2>
       <p class="sec-sub" style="margin:0 auto;">Desde una revisión rutinaria hasta una reparación completa de chapa, cubrimos todas las necesidades de tu vehículo.</p>
     </div>
     <div class="srv-grid">
@@ -1624,9 +1799,10 @@
     </div>
     <div style="text-align:center;position:relative;margin-bottom:48px;">
       <div class="rev-score">
+        <svg width="22" height="22" viewBox="0 0 24 24" style="flex-shrink:0"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
         <span class="rev-stars">★★★★★</span>
         <span class="rev-val">4.7</span>
-        <span class="rev-lbl">+45 reseñas verificadas en Google</span>
+        <span class="rev-lbl">+45 reseñas verificadas en Google · <a href="https://g.page/r/CSdHmjk2eMunEBM/review" target="_blank" rel="noopener" style="color:var(--gold);font-weight:600;">Ver todas →</a></span>
       </div>
     </div>
     <div class="rev-slider-wrap">
@@ -1762,6 +1938,7 @@
     <div class="budget-box">
     <div class="budget-inner">
       <div class="budget-left sr d1">
+        <div class="urgency-badge"><span class="urgency-dot"></span> Respuesta garantizada en 2h</div>
         <h2>Presupuesto<br>sin compromiso</h2>
         <p>Cuéntanos qué necesita tu coche y te daremos una valoración detallada, transparente y justa.</p>
         <ul class="budget-feats">
